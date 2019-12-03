@@ -31,15 +31,15 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 							(rs, row) -> new Person(rs.getString(1), rs.getString(2)))
 					.forEach(person -> log.info("Found <" + person + "> in the database."));
 
-			log.info("!!! ジョブ完了後のチェック２");
+			log.info("!!! JOB FINISHED 2");
 
 			jdbcTemplate.query("SELECT count(1) FROM people", (rs, row) -> rs.getInt(1))
-					.forEach(person_count -> log.info("登録数は <" + person_count + "> 件."));
+					.forEach(person_count -> log.debug("prson count : <" + person_count + ">."));
 
-			log.info("!!! ジョブ完了後のチェック３");
+			log.info("!!! JOB FINISHED 3");
 
 			jdbcTemplate.query("SELECT person_id FROM people", (rs, row) -> rs.getInt(1))
-					.forEach(person_count -> log.info("person_idは <" + person_count + ">."));
+					.forEach(person_count -> log.debug("person_id : <" + person_count + ">."));
 		}
 	}
 }

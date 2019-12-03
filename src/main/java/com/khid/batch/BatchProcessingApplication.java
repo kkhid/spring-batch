@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BatchProcessingApplication {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("äJénÅIÅIÅI");
+		System.out.println("ÈñãÂßã");
 		SpringApplication.run(BatchProcessingApplication.class, args);
-		System.out.println("èIóπÅIÅIÅI");
+		System.out.println("ÁµÇ‰∫ÜÔºÅÔºÅÔºÅ");
 	}
 }

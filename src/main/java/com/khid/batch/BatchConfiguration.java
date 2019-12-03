@@ -48,7 +48,7 @@ public class BatchConfiguration {
 
 	@Bean
 	public JdbcBatchItemWriter<Person> writer(DataSource dataSource) {
-		System.out.println("アイテムライター");
+		System.out.println("## batch writer injection");
 		return new JdbcBatchItemWriterBuilder<Person>()
 				.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
 				.sql("INSERT INTO people (first_name, last_name) VALUES (:firstName, :lastName)").dataSource(dataSource)
@@ -57,14 +57,14 @@ public class BatchConfiguration {
 
 	@Bean
 	public Job importUserJob(JobCompletionNotificationListener listener, Step step1) {
-		System.out.println("ユーザー取り込み");
+		System.out.println("## job injection");
 		return jobBuilderFactory.get("importUserJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step1)
 				.end().build();
 	}
 
 	@Bean
 	public Step step1(JdbcBatchItemWriter<Person> writer) {
-		System.out.println("STEP1の実行");
+		System.out.println("## step1 injection");
 		return stepBuilderFactory.get("step1").<Person, Person>chunk(10).reader(reader()).processor(processor())
 				.writer(writer).build();
 	}
